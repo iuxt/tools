@@ -1,25 +1,41 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import time
-import configparser
 from selenium import webdriver
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.chrome.options import Options
+import configparser
 
 conf = configparser.ConfigParser()
-conf.read('config')
-username = conf['user']['username']
-password = conf['user']['password']
+conf.read('config.ini')
+username = conf['gitee']['username']
+password = conf['gitee']['password']
+pages_url = conf['gitee']['pages_url']
+opts = Options()
+
+# 无头模式
+opts.headless = True
+
+# 不加载图片
+prefs = {
+    'profile.default_content_setting_values' : {
+        'images' : 2
+    }
+}
+opts.add_experimental_option('prefs',prefs)
+
+
 
 # 模拟浏览器打开到gitee登录界面
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=opts)
 driver.get('https://gitee.com/login')
 # 将窗口最大化
 driver.maximize_window()
-time.sleep(2)
+time.sleep(1)
 
-# 输入账号--通过html的id属性定位输入位置--改为你的账号
+# 输入账号--通过html的id属性定位输入位置
 driver.find_element_by_id('user_login').send_keys(username)
-# 输入密码--通过html的id属性定位输入位置--改为你的密码
+# 输入密码--通过html的id属性定位输入位置
 driver.find_element_by_id('user_password').send_keys(password)
 # 点击登录按钮--通过xpath确定点击位置
 driver.find_element_by_xpath(
@@ -27,8 +43,8 @@ driver.find_element_by_xpath(
 
 time.sleep(2)
 
-# 切换到gitee pages界面--改为you_gitee_id
-driver.get('https://gitee.com/iuxt/iuxt/pages')
+# 切换到gitee pages界面
+driver.get(pages_url)
 # 点击更新按钮--通过xpath确定点击位置
 driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div[1]/form/div[7]').click()
 # 确认更新提示框--这个函数的作用是确认提示框
