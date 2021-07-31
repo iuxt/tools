@@ -14,7 +14,7 @@ def get_sid():
 
 def delete_bc_trial_information():
     sid = get_sid()
-    result = os.popen("reg delete \"HKEY_USERS\%s\Software\Scooter Software\Beyond Compare 4\" /v CacheId /f") % sid
+    result = os.popen("reg delete \"HKEY_USERS\%s\Software\Scooter Software\Beyond Compare 4\" /v CacheId /f" % sid)
     return result
 
 if __name__ == '__main__':
