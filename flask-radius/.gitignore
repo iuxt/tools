@@ -1,0 +1,6 @@
+flask_session/
+.env
+__pycache__/
+venv/
+tls.crt
+tls.key

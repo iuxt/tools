@@ -1,0 +1,49 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: wifi
+  namespace: sre
+  labels:
+    app: wifi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wifi
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wifi
+    spec:
+      volumes:
+        - name: host-time
+          hostPath:
+            path: /etc/localtime
+            type: ''
+        - name: volume-l44spn
+          secret:
+            secretName: jgy-net-cn-tls
+            defaultMode: 420
+      containers:
+        - name: container-fl7yjg
+          image: '__IMAGE_TAG__'
+          ports:
+            - name: udp-1812
+              containerPort: 1812
+              protocol: UDP
+            - name: tcp-5000
+              containerPort: 5000
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: host-time
+              readOnly: true
+              mountPath: /etc/localtime
+            - name: volume-l44spn
+              readOnly: true
+              mountPath: /etc/raddb/certs/jianguoyun.net.cn
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: jcr-aks-registry

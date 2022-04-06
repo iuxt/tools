@@ -1,0 +1,6 @@
+  - from: https://wifi.jianguoyun.net.cn
+    to: http://wifi-web-service.sre
+    pass_identity_headers: true
+    timeout: 600s
+    allowed_groups:
+      - 1

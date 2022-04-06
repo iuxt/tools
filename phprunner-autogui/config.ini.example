@@ -1,0 +1,29 @@
+[hg-fapiao-17920]
+database_config = 
+    $host="nutstoresfcluster2-mysql.mysql.database.chinacloudapi.cn";
+    $user="hg17920";
+    $pwd="secret";
+    $port="";
+    $sys_dbname="hg17920";
+phpr_location = C:\\Users\\iuxt\\Downloads\\input
+output_folder = C:\\Users\\iuxt\\Downloads\\input
+
+[hg-hetong-20489]
+database_config = 
+    $host="nutstoresfcluster2-mysql.mysql.database.chinacloudapi.cn";
+    $user="nutstorehg@nutstoresfcluster2-mysql";
+    $pwd="secret";
+    $port="";
+    $sys_dbname="nutstore_contract";
+phpr_location = C:\\Users\\iuxt\\Downloads\\input
+output_folder = C:\\Users\\iuxt\\Downloads\\input
+
+[hg-forum-39966]
+database_config = 
+    $host="nutstoresfcluster2-mysql.mysql.database.chinacloudapi.cn";
+    $user="hg-forum-39966";
+    $pwd="secret";
+    $port="";
+    $sys_dbname="hg-forum-39966";
+phpr_location = C:\\Users\\iuxt\\Downloads\\input
+output_folder = C:\\Users\\iuxt\\Downloads\\output

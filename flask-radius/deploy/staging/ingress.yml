@@ -1,0 +1,19 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: wifi-ingress
+  namespace: sre
+spec:
+  tls:
+    - hosts:
+        - wifi-st.jianguoyun.net.cn
+      secretName: jgy-net-cn-prod-tls
+  rules:
+    - host: wifi-st.jianguoyun.net.cn
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              serviceName: vpn-gateway-service
+              servicePort: 80

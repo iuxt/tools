@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+# PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# export LANG=en_US.UTF-8
+
+# sqlite3 /tmp/freeradius.db ".read /etc/raddb/mods-config/sql/main/sqlite/schema.sql"
+# cd /root/ && flask update-userdict

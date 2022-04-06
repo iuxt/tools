@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+while :
+do
+    cd /root/
+    sleep 10
+    flask update-userdict
+    sleep 7200
+done

@@ -1,0 +1,62 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: wifi-st
+  namespace: zhanglikun
+  labels:
+    app: wifi-st
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wifi-st
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wifi-st
+    spec:
+      volumes:
+        - name: host-time
+          hostPath:
+            path: /etc/localtime
+            type: ''
+        - name: volume-l44spn
+          secret:
+            secretName: jgy-net-cn-tls
+            defaultMode: 420
+      containers:
+        - name: container-gmofnp
+          image: '__IMAGE_TAG__'
+          ports:
+            - name: udp-1812
+              containerPort: 1812
+              protocol: UDP
+            - name: tcp-5000
+              containerPort: 5000
+              protocol: TCP
+          env:
+            - name: SECRET_KEY
+              value: Irz8n8VepOovVDB
+            - name: SALT
+              value: WERinh2TfUlQ9gXh54
+            - name: nutstore_user_url
+              value: 'https://dav.jianguoyun.com/nsdav/getTeamMembers'
+            - name: nutstore_admin_username
+              value: workbench+pomerium@nutstore.net
+            - name: nutstore_admin_password
+              value: b2jkbfy8tbtrzrf6
+            - name: FLASK_APP
+              value: app
+          resources: {}
+          volumeMounts:
+            - name: host-time
+              readOnly: true
+              mountPath: /etc/localtime
+            - name: volume-l44spn
+              readOnly: true
+              mountPath: /etc/raddb/certs/jianguoyun.net.cn
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: jcr-aks-registry

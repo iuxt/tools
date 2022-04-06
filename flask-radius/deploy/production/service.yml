@@ -1,0 +1,39 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: wifi-radius-service
+  namespace: sre
+  labels:
+    app: wifi-radius-service
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+spec:
+  ports:
+    - name: udp-1812
+      protocol: UDP
+      port: 1812
+      targetPort: 1812
+  selector:
+    app: wifi
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wifi-web-service
+  namespace: sre
+  labels:
+    app: wifi-web-service
+spec:
+  ports:
+    - name: http-5000
+      protocol: TCP
+      port: 80
+      targetPort: 5000
+  selector:
+    app: wifi
+  type: ClusterIP
+  sessionAffinity: None
