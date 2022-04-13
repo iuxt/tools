@@ -1,0 +1,1 @@
+wsl.exe -d Ubuntu bash -c "cd $HOME/code && code ."
